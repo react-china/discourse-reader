@@ -14,13 +14,12 @@ def style-list $ {}
   :backgound-color :red
 
 defn layout-component (app-state)
-  println $ :topic-list app-state
   let
       topic-id $ atom nil
     fn () $ [] :div ({} (:style style-layout))
       [] :div ({} (:style style-list))
         for
-          [] topic (:topic-list app-state)
+          [] topic (:topics @app-state)
           [] title-component topic
       if (not $ nil? topic-id)
         [] :div |something

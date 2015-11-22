@@ -8,7 +8,7 @@ def style-title $ {}
   :color |blue
   :font-family base/font-family
 
-defn title-component ()
+defn title-component (topic)
   [] :div
     {} (:style style-title)
-    [] :span |nothing
+    [] :span (:fancy_title topic)
