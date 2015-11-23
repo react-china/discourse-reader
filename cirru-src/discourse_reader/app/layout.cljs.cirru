@@ -5,6 +5,8 @@ ns discourse-reader.app.layout
     [] discourse-reader.util.base :as base
     [] discourse-reader.app.title :refer
       [] title-component
+    [] discourse-reader.app.topic :refer
+      [] topic-component
 
 def style-layout $ {}
   :color |blue
@@ -19,20 +21,20 @@ def style-layout $ {}
 def style-list $ {}
   :backgound-color :red
   :width |50%
+  :overflow :auto
+  :height |100%
+  :padding "|10px"
 
 defn layout-component (app-state)
-  let
-      topic-id $ r/atom nil
-      change-topic $ fn (target-id)
-        println :calling target-id
-        reset! topic-id target-id
-    fn () $ [] :div ({} (:style style-layout))
-      [] :div ({} (:style style-list))
-        for
-          [] topic (:topics @app-state)
-          [] title-component
-            assoc topic :key (:id topic)
-            , change-topic
-      if (not= @topic-id nil)
-        [] :div $ str @topic-id
-        [] :div
+  [] :div ({} (:style style-layout))
+    [] :div ({} (:style style-list))
+      for
+        [] topic (:topics @app-state)
+        [] title-component
+          assoc topic :key (:id topic)
+    let
+        topic-id $ :topic-id @app-state
+      if (not= nil topic-id)
+        [] topic-component
+          get (:topic-details @app-state) (keyword topic-id)
+        [] :div |else
