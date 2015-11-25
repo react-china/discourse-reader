@@ -9,7 +9,6 @@ ns discourse-reader.app.layout
       [] topic-component
 
 def style-layout $ {}
-  :color |blue
   :font-family base/font-family
   :position |absolute
   :top 0
@@ -17,10 +16,10 @@ def style-layout $ {}
   :width |100%
   :height |100%
   :display |flex
+  :background-color "|hsl(240,90%,90%)"
 
 def style-list $ {}
-  :backgound-color :red
-  :width |50%
+  :width |40%
   :overflow :auto
   :height |100%
   :padding "|10px"

@@ -10,3 +10,27 @@ body * {
   top: 0;
   left: 0;
 }
+
+pre {
+  overflow: auto;
+  background: hsl(0,0%,94%);
+  padding: 10px;
+  font-size: 12px;
+}
+
+img.emoji {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+aside.quote {
+  background: hsl(180,40%,90%);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+img {
+  max-width: 100%;
+}

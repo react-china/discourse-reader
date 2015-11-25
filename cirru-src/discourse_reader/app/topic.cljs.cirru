@@ -10,9 +10,11 @@ def style-topic $ {}
   :height |100%
   :flex 1
   :overflow |auto
-  :padding |10px
+  :padding "|10px 10px 10px 0"
 
 def style-title $ {}
+  :background-color |white
+  :padding "|10px"
 
 defn topic-component (topic)
   [] :div ({} (:style style-topic))
