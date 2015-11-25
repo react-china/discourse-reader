@@ -19,11 +19,14 @@
   :profiles {:uberjar {:aot :all}}
 
   :clean-targets ^{:protect false} [:target-path "resources/public/cljs"]
-  :cljsbuild {:builds [{:id "dev"
-                        :source-paths ["src"]
-                        :figwheel {:websocket-host "192.168.0.129"}
-                        :compiler {:main "discourse_reader.core"
-                                   :asset-path "cljs/out"
-                                   :output-to  "resources/public/cljs/main.js"
-                                   :output-dir "resources/public/cljs/out"}}]}
+  :cljsbuild {:builds {:dev {:source-paths ["src"]
+                             :figwheel {:websocket-host "192.168.0.129"}
+                             :compiler {:main "discourse_reader.core"
+                                        :asset-path "cljs/out"
+                                        :output-to  "resources/public/cljs/main.js"
+                                        :output-dir "resources/public/cljs/out"}}
+                       :prod {:source-paths ["src"]
+                              :compiler {:output-to "resources/public/cljs/main.js"
+                                         :optimizations :advanced
+                                        :pretty-print false}}}}
   :figwheel {:css-dirs ["resources/public/css"]})

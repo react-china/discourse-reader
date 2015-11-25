@@ -7,7 +7,6 @@ ns discourse-reader.app.title
 
 def style-title $ {}
   :font-family base/font-family
-  :line-height |2em
   :cursor |pointer
   :font-size 14
   :white-space |nowrap
@@ -17,10 +16,14 @@ def style-title $ {}
   :border "|1px solid hsl(200,10%,93%)"
   :margin-bottom 8
   :padding "|0 10px"
+  :flex-shrink 0
+  :line-height |34px
+  :height |34px
+  :width |100%
 
 defn title-component (topic)
-  [] :div
-    {} (:style style-title)
-      :on-click $ fn (event)
+  [] :a
+    {} :style style-title
+      , :on-click $ fn (event)
         store/view-topic $ :id topic
     [] :span (:fancy_title topic)

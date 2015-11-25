@@ -12,11 +12,15 @@ defonce app-state $ r/atom $ {}
   :page 0
 
 defn fetch-data ()
-  GET |http://react-china.org/latest.json
+  GET
+    str |http://react-china.org/latest.json?page=
+      str (+ (:page @app-state) 1)
     {}
       :handler $ fn (response)
-        swap! app-state assoc :topics
-          :topics $ :topic_list response
+        swap! app-state update :page inc
+        swap! app-state update :topics $ fn (topics)
+          concat topics
+            :topics $ :topic_list response
       :error-handler $ fn (status status-text)
       :response-format :json
       :keywords? true

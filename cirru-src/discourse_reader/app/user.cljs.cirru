@@ -13,9 +13,10 @@ def style-user $ {}
 
 defn style-avatar (avatar)
   {}
-    :background-image $ str "|url(" cdn
-      replace avatar |{size} |25
-      , "|)"
+    :background-image $ if
+      re-find (re-pattern "|^http(s)?://") avatar
+      str "|url(" (replace avatar |{size} |25) "|\)"
+      str "|url(" cdn (replace avatar |{size} |25) "|)"
     :width 25
     :height 25
     :background-color "|hsl(0,0%,90%)"
